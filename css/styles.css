@@ -4,10 +4,10 @@
  */
 
 :root {
-  --primary-teal: #0d8a94;
-  --dark-slate: #2c3e50;
+  --primary-teal: #0e7490;
+  --dark-slate: #0f172a;
   --light-gray: #f8f9fa;
-  --text-color: #34495e;
+  --text-color: #334155;
 }
 
 html {
@@ -43,6 +43,35 @@ header {
   z-index: 1000; /* Ensures navigation stays layered safely on top of all content */
 }
 
+/* ⚡ BRAND LOGO TYPOGRAPHY FORMATTING */
+.logo-container a {
+  font-family:
+    "Cinzel", serif; /* Applies the premium custom serif display profile */
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--dark-slate);
+  text-decoration: none;
+  text-transform: uppercase; /* Capitalizes letters for a clean, structural aesthetic */
+  letter-spacing: 2px; /* Adds breathing room between characters for high-end editorial feel */
+  white-space: nowrap; /* Prevents the clinic name from breaking onto two lines */
+
+  /* Smooth transition framework for interactive hover dynamics */
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  display: inline-block;
+}
+
+/* Accent Color Interactive Shift On Hover */
+.logo-container a:hover {
+  color: var(--primary-teal);
+  transform: scale(1.02); /* Subtle geometric scaling animation */
+}
+
+nav {
+  margin-left: auto;
+}
+
 nav ul {
   display: flex;
   list-style: none;
@@ -55,6 +84,20 @@ nav a {
   color: var(--dark-slate);
   text-decoration: none;
   font-weight: 500;
+}
+
+/* Clean Navigation Link Tuning */
+nav ul li a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: color 0.2s ease;
+}
+
+nav ul li a:hover {
+  color: var(--primary-teal); /* Highlights text in teal to match the buttons */
 }
 
 /* ⚡ CLS ELIMINATION: Explicit containment framework rules */
@@ -139,21 +182,59 @@ nav a {
   display: none; /* Hidden entirely on standard screens */
 }
 
-/* Functional marketing component layouts */
+/* SERVICE CARDS */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  padding: 40px 5%;
+  padding: 70px 5%;
 }
 
 .service-card {
   border: 1px solid #e2e8f0;
-  padding: 25px;
-  border-radius: 6px;
+  border-radius: 8px;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  text-align: center;
+  overflow: hidden; /* Clips the corner radius borders cleanly over image assets */
+  padding: 0 0 25px 0; /* Clear bottom padding while letting top image touch edges */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.service-image-wrapper {
+  width: 100%;
+  height: 200px; /* Locks thumbnail sizes so columns stay uniform */
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: #f1f5f9; /* Soft fallback background screen color during loading */
+}
+
+.service-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Zooms and crops cleanly within the reserved pixel boundaries */
+  transition: transform 0.3s ease; /* Fluid transition animation framework */
+}
+
+/* Subtle Interactive Hover Effect: Gently expands graphic sizes on mouse hover */
+.service-card:hover .service-image-wrapper img {
+  transform: scale(1.05);
+}
+
+/* Add uniform inline padding controls back to typography elements */
+.service-card h3,
+.service-card p,
+.service-card .service-link {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.service-card h3 {
+  margin-top: 0;
+  color: var(--dark-slate);
+  font-size: 1.3rem;
 }
 
 #services-heading {
@@ -256,10 +337,26 @@ nav a {
   cursor: pointer;
 }
 
+/* FOOTER */
+
 footer {
   background: var(--dark-slate);
   color: white;
   padding: 40px 5%;
+}
+
+footer a[href^="tel:"] {
+  color: #ffffff !important; /* Forces the color to remain crisp white */
+  text-decoration: underline !important; /* Keeps it underlined to highlight interactiveness */
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+/* Optional hover state enhancement for desktop users */
+footer a[href^="tel:"]:hover {
+  color: var(
+    --primary-teal
+  ) !important; /* Highlights with teal color state updates on hover */
 }
 
 /* ==========================================================================

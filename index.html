@@ -9,6 +9,13 @@
       content="Looking for a trusted dentist in Mesquite, TX? Meridian Dental Arts offers expert cosmetic dentistry, family dental care, and emergency appointments. Call today!"
     />
     <link rel="canonical" href="https://meridiandentalmesquite.com/" />
+    <!-- Premium Serif Web Font for Brand Identity Styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/styles.css" />
     <script type="application/ld+json">
       {
@@ -85,9 +92,6 @@
           <li><a href="#lead-capture">Contact</a></li>
         </ul>
       </nav>
-      <div class="header-cta">
-        <a href="tel:+19725550144" class="cta-button">Call (972) 555-0144</a>
-      </div>
     </header>
 
     <main id="main-content">
@@ -102,7 +106,7 @@
             complete smile transformations, we combine modern technology with a
             comfortable, anxiety-free environment.
           </p>
-          <a href="#appointment-form" class="primary-btn"
+          <a href="#lead-capture" class="primary-btn"
             >Schedule New Patient Exam</a
           >
         </div>
@@ -112,28 +116,82 @@
       <section id="services" aria-labelledby="services-heading">
         <h2 id="services-heading">Our Dental Services</h2>
         <div class="services-grid">
+          <!-- Service 1: Cleanings -->
           <article class="service-card">
+            <div class="service-image-wrapper">
+              <picture>
+                <source
+                  srcset="images/dental-cleaning.avif"
+                  type="image/avif"
+                />
+                <img
+                  src="images/dental-cleaning.jpg"
+                  alt="Patient receiving professional dental cleaning and scaling treatment"
+                  width="400"
+                  height="250"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
             <h3>Dental Cleanings</h3>
             <p>
               Maintain peak oral health with comprehensive cleanings, deep
               scaling, and digital x-ray diagnostics tailored for the entire
               family.
             </p>
+            <!-- <a href="#lead-capture" class="service-link">Schedule Cleaning</a> -->
           </article>
+
+          <!-- Service 2: Cosmetic -->
           <article class="service-card">
+            <div class="service-image-wrapper">
+              <picture>
+                <source
+                  srcset="images/cosmetic-dentistry.avif"
+                  type="image/avif"
+                />
+                <img
+                  src="images/cosmetic-dentistry.jpg"
+                  alt="Close-up of teeth showing aesthetic porcelain veneers smile makeover"
+                  width="400"
+                  height="250"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
             <h3>Cosmetic Dentistry</h3>
             <p>
               Transform your smile with professional porcelain veneers, teeth
-              whitening, and custom smile design.
+              whitening treatments, and custom smile redesign plans.
             </p>
+            <!-- <a href="#lead-capture" class="service-link"
+              >Book Cosmetic Consultation</a> -->
           </article>
 
+          <!-- Service 3: Implants -->
           <article class="service-card">
+            <div class="service-image-wrapper">
+              <picture>
+                <source
+                  srcset="images/dental-implants.avif"
+                  type="image/avif"
+                />
+                <img
+                  src="images/dental-implants.jpg"
+                  alt="Anatomical dental model illustrating a secure single tooth titanium implant"
+                  width="400"
+                  height="250"
+                  loading="lazy"
+                />
+              </picture>
+            </div>
             <h3>Dental Implants</h3>
             <p>
-              Restore missing teeth permanently with state-of-the-art dental
-              implants that look, feel, and function like natural teeth.
+              Restore missing teeth permanently with state-of-the-art implants
+              that look, feel, and function exactly like natural teeth.
             </p>
+            <!-- <a href="#lead-capture" class="service-link"
+              >Request Implant Consultation</a> -->
           </article>
         </div>
       </section>

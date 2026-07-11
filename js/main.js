@@ -6,22 +6,46 @@
 document.addEventListener("DOMContentLoaded", () => {
   initFormTracking();
   initFaqAccordion();
-  initMobileMenuAutoClose();
+  initNavigationTransitions();
 });
 
 /**
- * Automatically collapses the mobile hamburger drawer when a section link is targeted.
+ * Handles smooth scrolling animations and collapses the mobile hamburger drawer.
  */
-function initMobileMenuAutoClose() {
+function initNavigationTransitions() {
   const menuToggle = document.getElementById("menu-toggle");
-  const navLinks = document.querySelectorAll("nav a");
-
-  if (!menuToggle) return;
+  const navLinks = document.querySelectorAll(
+    "nav a, .service-link, .primary-btn",
+  );
+  const headerOffset = 80; // Matches your CSS scroll-padding-top layout spacing
 
   navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      // Unchecks the hidden checkbox, triggering the CSS transition to collapse the menu drawer
-      menuToggle.checked = false;
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
+
+      // Only intercept local anchor links
+      if (targetId && targetId.startsWith("#")) {
+        event.preventDefault();
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          // Calculate precise element destination relative to the sticky header offset
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.pageYOffset - headerOffset;
+
+          // Execute custom animated scroll window shift
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+
+        // Automatically collapse the mobile drawer if it's open
+        if (menuToggle) {
+          menuToggle.checked = false;
+        }
+      }
     });
   });
 }
