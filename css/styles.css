@@ -10,6 +10,11 @@
   --text-color: #34495e;
 }
 
+html {
+  scroll-behavior: smooth; /* ⚡ NATIVE SMOOTH SCROLL: Zero JavaScript required */
+  scroll-padding-top: 80px;
+}
+
 body {
   font-family:
     system-ui,
@@ -24,12 +29,18 @@ body {
 }
 
 header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 5%;
   background: #ffffff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1000; /* Ensures navigation stays layered safely on top of all content */
 }
 
 nav ul {
@@ -48,11 +59,62 @@ nav a {
 
 /* ⚡ CLS ELIMINATION: Explicit containment framework rules */
 #hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 60px 5%;
+  display: flex;
   align-items: center;
+  justify-content: flex-start; /* Aligns text box beautifully to the left side */
+  min-height: 80vh; /* Dynamic viewport heights scale flawlessly across device displays */
+  padding: 60px 10%;
+  box-sizing: border-box;
+  position: relative;
+
+  /* Elegant Dark-Linear Blend Effect: Keeps white text accessible over light image areas */
+  background:
+    linear-gradient(
+      to right,
+      rgba(20, 30, 40, 0.85) 30%,
+      rgba(20, 30, 40, 0.2) 100%
+    ),
+    url("../images/dental-office-mesquite.avif") no-repeat center center;
+  background-size: cover; /* Forces graphic payload to adapt dynamically to viewframe limits */
+}
+
+/* Container limits to protect readability on extra wide desktop displays */
+.hero-overlay-content {
+  max-width: 550px;
+  z-index: 2; /* Pins content elements safely above background graphics masks */
+}
+
+#hero-heading {
+  font-size: 2.8rem;
+  color: #ffffff; /* Crisp white for high visibility contrast */
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+#hero p {
+  font-size: 1.2rem;
+  color: #e2e8f0; /* Soft off-white to drop strain profiles */
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.primary-btn {
+  display: inline-block;
+  background: var(--primary-teal);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Subtle Hover Shift Effect */
+.primary-btn:hover {
+  background: #0b727a;
+  transform: translateY(-2px);
 }
 
 .hero-image-container {
@@ -71,6 +133,12 @@ nav a {
   object-fit: cover;
 }
 
+/* Core Navigation Utilities */
+.menu-toggle-checkbox,
+.hamburger-button {
+  display: none; /* Hidden entirely on standard screens */
+}
+
 /* Functional marketing component layouts */
 .services-grid {
   display: grid;
@@ -83,6 +151,78 @@ nav a {
   border: 1px solid #e2e8f0;
   padding: 25px;
   border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#services-heading {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* ABOUT US SECTION */
+
+/* INTERACTIVE FAQ ACCORDION STYLES */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 15px 20px;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Eliminate default browser details marker if you want a custom feel */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-question {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--dark-slate);
+  cursor: pointer;
+  position: relative;
+  list-style: none; /* Removes native marker in Firefox/Chrome */
+  padding-right: 30px;
+}
+
+/* Custom interactive accordion arrow toggle icon indicator */
+.faq-question::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem;
+  color: var(--primary-teal);
+  transition: transform 0.2s ease;
+}
+
+/* When the details block opens, mutate the toggle indicator */
+.faq-item[open] .faq-question::after {
+  content: "−";
+}
+
+.faq-item[open] {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary-teal);
+}
+
+.faq-answer {
+  padding-top: 15px;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.faq-answer p {
+  margin: 0;
 }
 
 #lead-capture {
@@ -120,4 +260,154 @@ footer {
   background: var(--dark-slate);
   color: white;
   padding: 40px 5%;
+}
+
+/* ==========================================================================
+   📱 MOBILE RESPONSIVE MEDIA QUERIES (Breakpoint: 768px for tablets/phones)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+  /* 1. Navigation Restructuring */
+  header {
+    position: sticky;
+    flex-direction: row !important; /* Force inline display for logo and button */
+    justify-content: space-between;
+    padding: 15px 5%;
+  }
+
+  .header-cta {
+    display: none; /* Hide the secondary button wrapper on small screens to save space */
+  }
+
+  /* 2. Reveal and Style the Hamburger Icon Button */
+  .hamburger-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--dark-slate);
+    border-radius: 2px;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  /* 3. Transform the Navigation Menu into a Collapsible Dropdown Drawer */
+  nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-height: 0; /* Starts completely collapsed */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    z-index: 99;
+  }
+
+  nav ul {
+    flex-direction: column;
+    padding: 20px 5%;
+    gap: 15px;
+    align-items: flex-start !important; /* Left-align links cleanly on mobile */
+  }
+
+  nav a {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  /* 4. The Functional Trick: Trigger animations when the hidden checkbox is Checked */
+  .menu-toggle-checkbox:checked ~ nav {
+    max-height: 300px; /* Expands smoothly down to expose the link items */
+  }
+
+  /* Turn top line into part of the "X" */
+  .menu-toggle-checkbox:checked
+    ~ .hamburger-button
+    .hamburger-line:nth-child(1) {
+    transform: translateY(7.5px) rotate(45deg);
+  }
+
+  /* Fade out middle line */
+  .menu-toggle-checkbox:checked
+    ~ .hamburger-button
+    .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  /* Turn bottom line into the other half of the "X" */
+  .menu-toggle-checkbox:checked
+    ~ .hamburger-button
+    .hamburger-line:nth-child(3) {
+    transform: translateY(-7.5px) rotate(-45deg);
+  }
+
+  /* 2. Hero Section Mobile Optimization (Stack column layout vertically) */
+  #hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 30px;
+    justify-content: center; /* Center everything perfectly for small handheld views */
+    padding: 60px 5%;
+    /* Shift blend downward on mobile screens since text stacks vertically */
+    background:
+      linear-gradient(
+        to bottom,
+        rgba(20, 30, 40, 0.9) 60%,
+        rgba(20, 30, 40, 0.5) 100%
+      ),
+      url("../images/dental-office-mesquite.avif") no-repeat center center;
+    background-size: cover;
+  }
+
+  #hero-heading {
+    font-size: 2rem; /* Scale down heading size slightly so text doesn't wrap awkwardly */
+  }
+
+  /* Maintain container aspect ratio constraints while scaling widths fluidly */
+  .hero-image-container {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2; /* Automatically pins proportions locally without layout shifts */
+  }
+
+  #hero p {
+    font-size: 1.1rem;
+  }
+
+  /* 3. Services Grid Stacking */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 5%;
+  }
+
+  /* 4. Interactive FAQ Mobile Padding Adjustments */
+  #patient-faq {
+    padding: 40px 5%;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+
+  /* 5. Intake Form Layout Fluidity */
+  #quote-form {
+    width: 100%;
+    max-width: 100%;
+  }
 }

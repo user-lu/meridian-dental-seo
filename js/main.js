@@ -5,7 +5,26 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   initFormTracking();
+  initFaqAccordion();
+  initMobileMenuAutoClose();
 });
+
+/**
+ * Automatically collapses the mobile hamburger drawer when a section link is targeted.
+ */
+function initMobileMenuAutoClose() {
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.querySelectorAll("nav a");
+
+  if (!menuToggle) return;
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      // Unchecks the hidden checkbox, triggering the CSS transition to collapse the menu drawer
+      menuToggle.checked = false;
+    });
+  });
+}
 
 /**
  * Attaches submit interception loops to the appointment intake engine.
@@ -82,4 +101,36 @@ function displayFormSuccess(formElement) {
     `;
 
   container.appendChild(alertBox);
+}
+
+/**
+ * Enhances the native FAQ accordion layout behavior and tracks interaction signals.
+ */
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item) => {
+    const summary = item.querySelector(".faq-question");
+
+    summary.addEventListener("click", (event) => {
+      // Close all other open FAQ items except the one clicked
+      if (!item.hasAttribute("open")) {
+        faqItems.forEach((otherItem) => {
+          if (otherItem !== item) {
+            otherItem.removeAttribute("open");
+          }
+        });
+
+        // Marketing Analytics Step: Track which questions interest patients most
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "faq_question_opened",
+          questionText: summary.textContent.trim(),
+        });
+        console.log(
+          `Tracked FAQ Engagement Event: ${summary.textContent.trim()}`,
+        );
+      }
+    });
+  });
 }

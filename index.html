@@ -53,16 +53,36 @@
   <body>
     <header>
       <div class="logo-container">
-        <a href="/" aria-label="Meridian Dental Arts Home"
+        <a href="#hero" aria-label="Meridian Dental Arts Home"
           >Meridian Dental Arts</a
         >
       </div>
+
+      <!-- ⚡ CSS TOGLE HACK: Hidden checkbox handles the click state natively -->
+      <input
+        type="checkbox"
+        id="menu-toggle"
+        class="menu-toggle-checkbox"
+        aria-hidden="true"
+      />
+
+      <!-- Hamburger button wrapper visible ONLY on mobile displays -->
+      <label
+        for="menu-toggle"
+        class="hamburger-button"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </label>
+
       <nav aria-label="Main Navigation">
         <ul>
-          <li><a href="/services/cosmetic.html">Cosmetic Dentistry</a></li>
-          <li><a href="/services/implants.html">Dental Implants</a></li>
-          <li><a href="/about.html">About Our Practice</a></li>
-          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#patient-faq">FAQ</a></li>
+          <li><a href="#lead-capture">Contact</a></li>
         </ul>
       </nav>
       <div class="header-cta">
@@ -86,15 +106,6 @@
             >Schedule New Patient Exam</a
           >
         </div>
-        <div class="hero-image-container">
-          <img
-            src="images/dental-office-mesquite.avif"
-            alt="Modern, clean dental treatment room at Meridian Dental Arts in Mesquite, Texas"
-            width="600"
-            height="400"
-            fetchpriority="high"
-          />
-        </div>
       </section>
 
       <!-- SERVICES SECTION -->
@@ -102,16 +113,19 @@
         <h2 id="services-heading">Our Dental Services</h2>
         <div class="services-grid">
           <article class="service-card">
+            <h3>Dental Cleanings</h3>
+            <p>
+              Maintain peak oral health with comprehensive cleanings, deep
+              scaling, and digital x-ray diagnostics tailored for the entire
+              family.
+            </p>
+          </article>
+          <article class="service-card">
             <h3>Cosmetic Dentistry</h3>
             <p>
               Transform your smile with professional porcelain veneers, teeth
               whitening, and custom smile design.
             </p>
-            <a
-              href="/services/cosmetic.html"
-              aria-label="Learn more about cosmetic dentistry services"
-              >Explore Cosmetic Options</a
-            >
           </article>
 
           <article class="service-card">
@@ -120,12 +134,140 @@
               Restore missing teeth permanently with state-of-the-art dental
               implants that look, feel, and function like natural teeth.
             </p>
-            <a
-              href="/services/implants.html"
-              aria-label="Learn more about dental implant surgery"
-              >Explore Implants</a
-            >
           </article>
+        </div>
+      </section>
+
+      <!-- ➕ NEW: ABOUT US SECTION -->
+      <section
+        id="about"
+        aria-labelledby="about-heading"
+        style="padding: 60px 5%; max-width: 900px; margin: 0 auto"
+      >
+        <div class="about-content" style="text-align: center">
+          <h2
+            id="about-heading"
+            style="color: var(--dark-slate); margin-bottom: 20px"
+          >
+            About Meridian Dental Arts
+          </h2>
+          <p
+            style="
+              font-size: 1.1rem;
+              line-height: 1.8;
+              color: var(--text-color);
+              margin-bottom: 30px;
+            "
+          >
+            Serving the Mesquite community for over a decade, Meridian Dental
+            Arts is dedicated to delivering world-class oral healthcare in a
+            modern, welcoming environment. Led by a team of highly trained
+            professionals, we utilize state-of-the-art diagnostic tools to
+            ensure every treatment plan is precise, personalized, and
+            comfortable.
+          </p>
+          <blockquote
+            style="
+              font-style: italic;
+              border-left: 4px solid var(--primary-teal);
+              padding: 10px 20px;
+              margin: 0 auto;
+              max-width: 600px;
+              background: #f8f9fa;
+              text-align: left;
+              color: var(--dark-slate);
+            "
+          >
+            "Our mission is to provide exceptional, anxiety-free dental care
+            that empowers our patients, restores confidence, and builds healthy,
+            lasting smiles for generations to come."
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- NEW PATIENT FAQ SECTION (Targets informational local search intent) -->
+      <section
+        id="patient-faq"
+        aria-labelledby="faq-heading"
+        style="padding: 60px 5%; max-width: 800px; margin: 0 auto"
+      >
+        <h2
+          id="faq-heading"
+          style="
+            text-align: center;
+            color: var(--dark-slate);
+            margin-bottom: 40px;
+          "
+        >
+          New Patient Frequently Asked Questions
+        </h2>
+
+        <div class="faq-container">
+          <!-- FAQ Item 1: Financial Anxiety -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              Do you accept my dental insurance, and what if I don't have any?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                We accept most major PPO dental insurance plans and will gladly
+                file all claims on your behalf to maximize your benefits. For
+                patients without insurance, we offer an affordable in-house
+                Dental Wellness Plan that covers routine cleanings and provides
+                steep discounts on all cosmetic and restorative procedures.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ Item 2: Competency / Specialty -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              What cosmetic and restorative procedures do you perform in-office?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Unlike other practices that refer you out to expensive
+                specialists, our team handles routine family cleanings,
+                porcelain veneers, professional teeth whitening, clear aligners,
+                and complete dental implant surgeries right here under one roof
+                in Mesquite.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ Item 3: Dental Anxiety / Fear -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              I experience severe dental anxiety. How does your office handle
+              this?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                Dental anxiety is incredibly common, and our office is designed
+                to be a judgment-free, comfortable environment. We offer gentle
+                care techniques, noise-canceling headphones, warm blankets, and
+                safe sedation options (like nitrous oxide) to ensure you remain
+                completely relaxed during your visit.
+              </p>
+            </div>
+          </details>
+
+          <!-- FAQ Item 4: Convenience / Scheduling Friction -->
+          <details class="faq-item">
+            <summary class="faq-question">
+              How quickly can I get an appointment, and do you handle
+              emergencies?
+            </summary>
+            <div class="faq-answer">
+              <p>
+                New patient routine exams can typically be scheduled within the
+                same week. If you are experiencing a severe toothache or a
+                dental emergency, call us immediately—we reserve dedicated
+                emergency time blocks every single day to provide same-day pain
+                relief for both new and existing patients.
+              </p>
+            </div>
+          </details>
         </div>
       </section>
 
