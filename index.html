@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dentist Mesquite TX | Meridian Dental Arts</title>
+    <title>Dentist Mesquite TX | Meridian Dental</title>
     <meta
       name="description"
-      content="Looking for a trusted dentist in Mesquite, TX? Meridian Dental Arts offers expert cosmetic dentistry, family dental care, and emergency appointments. Call today!"
+      content="Looking for a trusted dentist in Mesquite, TX? Meridian Dental offers expert cosmetic dentistry, family dental care, and emergency appointments. Call today!"
     />
     <link rel="canonical" href="https://meridiandentalmesquite.com/" />
     <!-- ⚡ LCP DISCOVERY FIX: Preloads the background asset immediately with high priority -->
@@ -24,13 +24,6 @@
       as="font"
       type="font/woff2"
       crossorigin
-    />
-    <link
-      rel="preload"
-      href="images/dental-office-mesquite.avif"
-      as="image"
-      type="image/avif"
-      fetchpriority="high"
     />
     <!-- ⚡ CORRECTED CRITICAL CSS BLOCK -->
     <style>
@@ -59,6 +52,9 @@
       html {
         scroll-behavior: smooth;
         scroll-padding-top: 80px;
+        height: 100%;
+        margin: 0;
+        padding: 0;
       }
 
       body {
@@ -68,6 +64,9 @@
           sans-serif;
         color: var(--text-color);
         margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
       }
 
       /* ⚡ GLOBAL STRUCTURAL FIX FOR MAIN CONTAINER CLS */
@@ -77,7 +76,8 @@
         position: relative;
         /* Reserves layout block space instantly while internal content loads */
         min-height: 100vh;
-        contain: strict;
+        contain: layout;
+        flex: 1 0 auto;
       }
 
       /* Sticky Header Frame */
@@ -165,14 +165,16 @@
         font-weight: bold;
       }
     </style>
+
+    <!-- LOOK MORE INTO SCHEMA. MAKE SURE WE'RE USING THE CORRECT INFO -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Dentist",
-        "@id": "https://meridiandentalmesquite.com/#practice",
-        "name": "Meridian Dental Arts",
+        "@id": "https://meridiandentalmesquite.com/",
+        "name": "Meridian Dental",
         "url": "https://meridiandentalmesquite.com/",
-        "telephone": "+1-972-555-0144",
+        "telephone": "+1-972-559-9293",
         "priceRange": "$$",
         "address": {
           "@type": "PostalAddress",
@@ -216,9 +218,7 @@
   <body>
     <header>
       <div class="logo-container">
-        <a href="#hero" aria-label="Meridian Dental Arts Home"
-          >Meridian Dental Arts</a
-        >
+        <a href="#hero" aria-label="Meridian Dental Home">Meridian Dental</a>
       </div>
 
       <!-- ⚡ CSS TOGLE HACK: Hidden checkbox handles the click state natively -->
@@ -285,7 +285,7 @@
                 sizes="(max-width: 768px) 100vw, 400px"> 
                 -->
                 <img
-                  src="images/dental-cleaning.jpg"
+                  src="images/dental-cleaning.avif"
                   alt="Patient receiving professional dental cleaning and scaling treatment"
                   width="400"
                   height="250"
@@ -311,7 +311,7 @@
                   type="image/avif"
                 />
                 <img
-                  src="images/cosmetic-dentistry.jpg"
+                  src="images/cosmetic-dentistry.avif"
                   alt="Close-up of teeth showing aesthetic porcelain veneers smile makeover"
                   width="400"
                   height="250"
@@ -337,7 +337,7 @@
                   type="image/avif"
                 />
                 <img
-                  src="images/dental-implants.jpg"
+                  src="images/dental-implants.avif"
                   alt="Anatomical dental model illustrating a secure single tooth titanium implant"
                   width="400"
                   height="250"
@@ -360,12 +360,12 @@
       <section id="about" aria-labelledby="about-heading">
         <div class="about-content">
           <h2 id="about-heading" style="color: var(--dark-slate)">
-            About Meridian Dental Arts
+            About Meridian Dental
           </h2>
           <p>
-            Serving the Mesquite community for over a decade, Meridian Dental
-            Arts is dedicated to delivering world-class oral healthcare in a
-            modern, welcoming environment. Led by a team of highly trained
+            Serving the Mesquite community for over a decade, Meridian Dental is
+            dedicated to delivering world-class oral healthcare in a modern,
+            welcoming environment. Led by a team of highly trained
             professionals, we utilize state-of-the-art diagnostic tools to
             ensure every treatment plan is precise, personalized, and
             comfortable.
@@ -481,7 +481,7 @@
             id="user-name"
             name="name"
             required
-            placeholder="Jane Doe"
+            placeholder="Full name"
           />
 
           <label for="user-email">Email Address</label>
@@ -490,7 +490,7 @@
             id="user-email"
             name="email"
             required
-            placeholder="jane@example.com"
+            placeholder="email@example.com"
           />
 
           <label for="user-phone">Phone Number</label>
@@ -499,7 +499,7 @@
             id="user-phone"
             name="phone"
             required
-            placeholder="(972) 555-0144"
+            placeholder="(000) 000-0000"
           />
 
           <button type="submit" id="submit-lead-btn">
@@ -511,12 +511,12 @@
 
     <footer>
       <div class="footer-info">
-        <p>&copy; 2026 Meridian Dental Arts. All Rights Reserved.</p>
+        <p>&copy; 2026 Meridian Dental. All Rights Reserved.</p>
         <address>
-          <strong>Meridian Dental Arts</strong><br />
+          <strong>Meridian Dental</strong><br />
           456 Medical Circle, Suite B<br />
           Mesquite, TX 75150<br />
-          Phone: <a href="tel:+19725550144">(972) 555-0144</a>
+          Phone: <a href="tel:+19725599293">(972) 559-9293</a>
         </address>
       </div>
     </footer>
