@@ -16,14 +16,55 @@
       gtag("config", "G-T0NXB626LD");
     </script>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dentist Mesquite TX | Meridian Dental</title>
+
+    <!-- Primary Meta Tags -->
+    <title>Meridian Dental | Comprehensive Dental Care in Mesquite, TX</title>
+    <meta
+      name="title"
+      content="Meridian Dental | Comprehensive Dental Care in Mesquite, TX"
+    />
     <meta
       name="description"
-      content="Looking for a trusted dentist in Mesquite, TX? Meridian Dental offers expert cosmetic dentistry, family dental care, and emergency appointments. Call today!"
+      content="Top-rated family and cosmetic dentistry in Mesquite, TX. Offering checkups, teeth whitening, implants, and emrgency dental care. Schedule your visit today!"
     />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href="https://meridiandentalmesquite.com/" />
-    <!-- ⚡ LCP DISCOVERY FIX: Preloads the background asset immediately with high priority -->
+
+    <!-- Open Graph / Facebook / iMessage / Slack -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://meridiandentalmesquite.com/" />
+    <meta
+      property="og:title"
+      content="Meridian Dental | Premier Dental Care in Mesquite, TX"
+    />
+    <meta
+      property="og:description"
+      content="Modern, gentle dental care for the whole family in Mesquite. Schedule an appointment online or call us today."
+    />
+    <meta
+      property="og:image"
+      content="https://meridiandentalmesquite.com/images/og-preview.jpg"
+    />
+
+    <!-- Twitter (X) -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://meridiandentalmesquite.com/"
+    />
+    <meta
+      property="twitter:title"
+      content="Meridian Dental | Premier Dental Care in Mesquite, TX"
+    />
+    <meta
+      property="twitter:description"
+      content="Modern, gentle dental care for the whole family in Mesquite. Schedule an appointment online or call us today."
+    />
+    <meta
+      property="twitter:image"
+      content="https://meridiandentalmesquite.com/images/og-preview.jpg"
+    />
+
     <!-- Preload the critical above-the-fold assets immediately -->
     <link
       rel="preload"
@@ -180,16 +221,17 @@
       }
     </style>
 
-    <!-- LOOK MORE INTO SCHEMA. MAKE SURE WE'RE USING THE CORRECT INFO -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Dentist",
-        "@id": "https://meridiandentalmesquite.com/",
+        "@id": "https://meridiandentalmesquite.com/#dentist",
         "name": "Meridian Dental",
         "url": "https://meridiandentalmesquite.com/",
         "telephone": "+1-972-559-9293",
         "priceRange": "$$",
+        "image": "https://meridiandentalmesquite.com/images/og-preview.jpg",
+        "medicalSpecialty": ["GeneralDentistry", "CosmeticDentistry"],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "456 Medical Circle, Suite B",
@@ -203,19 +245,66 @@
           "latitude": 32.7712,
           "longitude": -96.612
         },
-        "image": "https://meridiandentalmesquite.com/images/dental-office-mesquite.avif",
+        "areaServed": [
+          {
+            "@type": "City",
+            "name": "Mesquite"
+          },
+          {
+            "@type": "City",
+            "name": "Garland"
+          },
+          {
+            "@type": "City",
+            "name": "Dallas"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Dental Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "General & Preventive Dentistry"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Teeth Whitening"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Dental Implants"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Emergency Dental Care"
+              }
+            }
+          ]
+        },
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-            "opens": "07:00",
-            "closes": "16:00"
+            "opens": "08:00",
+            "closes": "17:00"
           },
           {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": "Friday",
             "opens": "08:00",
-            "closes": "13:00"
+            "closes": "14:00"
           }
         ]
       }
@@ -235,7 +324,7 @@
         <a href="#hero" aria-label="Meridian Dental Home">Meridian Dental</a>
       </div>
 
-      <!-- ⚡ CSS TOGLE HACK: Hidden checkbox handles the click state natively -->
+      <!-- ⚡ CSS TOGGLE HACK: Hidden checkbox handles the click state natively -->
       <input
         type="checkbox"
         id="menu-toggle"
