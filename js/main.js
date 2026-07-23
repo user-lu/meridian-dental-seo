@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFaqAccordion();
   initNavigationTransitions();
   initPhoneTracking();
+  initScrollTracking();
 });
 
 /**
@@ -18,7 +19,7 @@ function initNavigationTransitions() {
   const navLinks = document.querySelectorAll(
     "nav a, .service-link, .primary-btn",
   );
-  const headerOffset = 80; // Matches your CSS scroll-padding-top layout spacing
+  const headerOffset = 80; // Matches the CSS scroll-padding-top layout spacing
 
   navLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -213,6 +214,48 @@ function initPhoneTracking() {
       event: "phone_call_clicked",
       clickLocation: "footer",
       estimatedLeadValue: 250.0,
+    });
+  });
+}
+
+/**
+ * Tracks incremental scroll depth thresholds (25%, 50%, 75%, 90%) as engagement signals.
+ */
+function initScrollTracking() {
+  const thresholds = [25, 50, 75, 90];
+  const reached = new Set();
+
+  window.addEventListener("scroll", () => {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    // Calculate percent scrolled
+    const totalScrollable = docHeight - windowHeight;
+    if (totalScrollable <= 0) return;
+
+    const scrollPercent = Math.round((scrollTop / totalScrollable) * 100);
+
+    thresholds.forEach((threshold) => {
+      if (scrollPercent >= threshold && !reached.has(threshold)) {
+        reached.add(threshold);
+
+        // 1. Send directly to GA4 via gtag
+        if (typeof gtag === "function") {
+          gtag("event", "scroll_depth", {
+            event_category: "engagement",
+            percent_scrolled: threshold,
+          });
+          console.log(`GA4 Event Dispatched: scroll_depth (${threshold}%)`);
+        }
+
+        // 2. DataLayer push (for GTM / backup)
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "scroll_threshold_reached",
+          scrollPercent: threshold,
+        });
+      }
     });
   });
 }
