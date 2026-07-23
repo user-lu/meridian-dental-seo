@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initFormTracking();
   initFaqAccordion();
   initNavigationTransitions();
+  initPhoneTracking();
 });
 
 /**
@@ -96,6 +97,19 @@ function initFormTracking() {
  * Safely aggregates event variables to present down-funnel channel visibility inside GA4.
  */
 function fireAppointmentConversionEvent() {
+  // Send directly to GA4 via gtag (standard)
+  if (typeof gtag === "function") {
+    gtag("event", "generate_lead", {
+      event_category: "engagement",
+      form_location: "homepage_hero_footer",
+      lead_type: "appointment_request",
+      value: 250.0,
+      currency: "USD",
+    });
+    console.log("GA4 Event Dispatched: generate_lead");
+  }
+
+  // Pushes to DataLayer for GTM (backup)
   window.dataLayer = window.dataLayer || [];
 
   window.dataLayer.push({
@@ -136,25 +150,69 @@ function initFaqAccordion() {
   faqItems.forEach((item) => {
     const summary = item.querySelector(".faq-question");
 
-    summary.addEventListener("click", (event) => {
-      // Close all other open FAQ items except the one clicked
+    if (!summary) return;
+
+    summary.addEventListener("click", () => {
+      // Trigger tracking only when opening an item (not when collapsing it)
       if (!item.hasAttribute("open")) {
+        // Close all other open FAQ items for cleaner UI
         faqItems.forEach((otherItem) => {
           if (otherItem !== item) {
             otherItem.removeAttribute("open");
           }
         });
 
-        // Marketing Analytics Step: Track which questions interest patients most
+        const questionText = summary.textContent.trim();
+
+        // 1. Send directly to GA4 via gtag (Standard GA4 Event)
+        if (typeof gtag === "function") {
+          gtag("event", "select_content", {
+            content_type: "faq_accordion",
+            item_id: questionText,
+          });
+          console.log(`GA4 Event Dispatched: select_content (${questionText})`);
+        }
+
+        // 2. Also push to DataLayer (For GTM / backup)
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: "faq_question_opened",
-          questionText: summary.textContent.trim(),
+          questionText: questionText,
         });
-        console.log(
-          `Tracked FAQ Engagement Event: ${summary.textContent.trim()}`,
-        );
+
+        console.log(`Tracked FAQ Engagement Event: ${questionText}`);
       }
+    });
+  });
+}
+
+/**
+ * Tracks direct phone call clicks as high-value lead conversions.
+ */
+function initPhoneTracking() {
+  const phoneLink = document.getElementById("phone-click-link");
+
+  if (!phoneLink) return;
+
+  phoneLink.addEventListener("click", () => {
+    // 1. Send directly to GA4 via gtag
+    if (typeof gtag === "function") {
+      gtag("event", "generate_lead", {
+        event_category: "engagement",
+        event_label: "Footer Phone Click",
+        lead_type: "phone_call",
+        value: 250.0,
+        currency: "USD",
+      });
+      console.log("GA4 Event Dispatched: generate_lead (Phone Click)");
+    }
+
+    // 2. DataLayer push (for GTM / backup)
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "phone_call_clicked",
+      clickLocation: "footer",
+      estimatedLeadValue: 250.0,
     });
   });
 }
