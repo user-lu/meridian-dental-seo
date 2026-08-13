@@ -56,8 +56,7 @@ function initNavigationTransitions() {
  * Attaches submit interception loops to the appointment intake engine.
  */
 function initFormTracking() {
-  const appointmentForm = document.getElementById("quote-form");
-
+  const appointmentForm = document.querySelectorAll("form");
   if (!appointmentForm) {
     console.warn(
       "SEO Audit Notice: #quote-form element missing from active viewport nodes.",
@@ -191,29 +190,32 @@ function initFaqAccordion() {
  * Tracks direct phone call clicks as high-value lead conversions.
  */
 function initPhoneTracking() {
-  const phoneLink = document.getElementById("phone-click-link");
+  const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
 
-  if (!phoneLink) return;
+  phoneLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      const locationLabel =
+        link.id || link.getAttribute("data-location") || "general_link";
 
-  phoneLink.addEventListener("click", () => {
-    // 1. Send directly to GA4 via gtag
-    if (typeof gtag === "function") {
-      gtag("event", "generate_lead", {
-        event_category: "engagement",
-        event_label: "Footer Phone Click",
-        lead_type: "phone_call",
-        value: 250.0,
-        currency: "USD",
+      if (typeof gtag === "function") {
+        gtag("event", "generate_lead", {
+          event_category: "engagement",
+          event_label: `Phone Click (${locationLabel})`,
+          lead_type: "phone_call",
+          value: 250.0,
+          currency: "USD",
+        });
+        console.log(
+          `GA4 Event Dispatched: generate_lead (Phone Click - ${locationLabel})`,
+        );
+      }
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "phone_call_clicked",
+        clickLocation: locationLabel,
+        estimatedLeadValue: 250.0,
       });
-      console.log("GA4 Event Dispatched: generate_lead (Phone Click)");
-    }
-
-    // 2. DataLayer push (for GTM / backup)
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "phone_call_clicked",
-      clickLocation: "footer",
-      estimatedLeadValue: 250.0,
     });
   });
 }
