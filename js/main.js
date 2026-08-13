@@ -55,73 +55,86 @@ function initNavigationTransitions() {
 /**
  * Attaches submit interception loops to the appointment intake engine.
  */
+/**
+ * Attaches submit interception loops to all intake forms on the site.
+ */
 function initFormTracking() {
-  const appointmentForm = document.querySelectorAll("form");
-  if (!appointmentForm) {
-    console.warn(
-      "SEO Audit Notice: #quote-form element missing from active viewport nodes.",
-    );
+  // Use querySelectorAll to safely select all form elements on any page
+  const forms = document.querySelectorAll("form");
+
+  if (!forms || forms.length === 0) {
+    console.warn("SEO Audit Notice: No <form> elements found on current page.");
     return;
   }
 
-  appointmentForm.addEventListener("submit", function (event) {
-    // Halt standard page postback refresh to protect active analytics stream state
-    event.preventDefault();
+  forms.forEach((appointmentForm) => {
+    appointmentForm.addEventListener("submit", function (event) {
+      // Halt standard page postback refresh
+      event.preventDefault();
 
-    const nameField = document.getElementById("user-name");
-    const emailField = document.getElementById("user-email");
-    const phoneField = document.getElementById("user-phone");
+      // Flexible field selectors to handle both #quote-form and #emergencyForm
+      const nameField = appointmentForm.querySelector(
+        'input[name="name"], input[name="fullName"]',
+      );
+      const emailField = appointmentForm.querySelector('input[name="email"]');
+      const phoneField = appointmentForm.querySelector('input[name="phone"]');
 
-    if (!nameField.value || !emailField.value || !phoneField.value) {
-      alert("Please fill out all required fields.");
-      return;
-    }
+      const nameVal = nameField ? nameField.value.trim() : "";
+      const emailVal = emailField ? emailField.value.trim() : "";
+      const phoneVal = phoneField ? phoneField.value.trim() : "";
 
-    const baselinePayload = {
-      patientName: nameField.value,
-      patientEmail: emailField.value,
-      patientPhone: phoneField.value,
-    };
+      if (!nameVal || !phoneVal) {
+        alert("Please fill out all required fields.");
+        return;
+      }
 
-    console.log("Intake processing verified for submission:", baselinePayload);
+      const baselinePayload = {
+        patientName: nameVal,
+        patientEmail: emailVal,
+        patientPhone: phoneVal,
+        formId: appointmentForm.id || "unnamed_form",
+      };
 
-    // Dispatches tracked event payload straight into the GTM engine wrapper
-    fireAppointmentConversionEvent();
+      console.log(
+        "Intake processing verified for submission:",
+        baselinePayload,
+      );
 
-    // Perform visual mutation swap to confirmation view
-    displayFormSuccess(appointmentForm);
+      // Dispatches tracked event payload straight into GA4 & DataLayer
+      fireAppointmentConversionEvent(appointmentForm.id);
+
+      // Perform visual mutation swap to confirmation view
+      displayFormSuccess(appointmentForm);
+    });
   });
 }
 
 /**
  * Safely aggregates event variables to present down-funnel channel visibility inside GA4.
  */
-function fireAppointmentConversionEvent() {
-  // Send directly to GA4 via gtag (standard)
+function fireAppointmentConversionEvent(formId = "general_form") {
+  // Send directly to GA4 via gtag
   if (typeof gtag === "function") {
     gtag("event", "generate_lead", {
       event_category: "engagement",
-      form_location: "homepage_hero_footer",
+      form_location: formId,
       lead_type: "appointment_request",
       value: 250.0,
       currency: "USD",
     });
-    console.log("GA4 Event Dispatched: generate_lead");
+    console.log(`GA4 Event Dispatched: generate_lead (${formId})`);
   }
 
   // Pushes to DataLayer for GTM (backup)
   window.dataLayer = window.dataLayer || [];
-
   window.dataLayer.push({
     event: "form_lead_submitted",
-    formLocation: "homepage_hero_footer",
+    formLocation: formId,
     leadType: "appointment_request",
-    estimatedLeadValue: 250.0, // Average diagnostic baseline value for patient lifecycle metrics
+    estimatedLeadValue: 250.0,
   });
 
-  console.log(
-    "DataLayer Event Successfully Dispatched: form_lead_submitted (Type: appointment_request)",
-  );
+  console.log(`DataLayer Event Dispatched: form_lead_submitted (${formId})`);
 }
 
 /**

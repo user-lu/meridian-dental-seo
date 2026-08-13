@@ -299,12 +299,12 @@ footer {
   padding: 40px 20px;
 }
 
-.footer-info {
+/* .footer-info {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 20px;
-}
+} */
 
 footer a[href^="tel:"] {
   color: #ffffff !important;
