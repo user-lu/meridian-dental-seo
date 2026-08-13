@@ -45,25 +45,30 @@
             "url": "https://meridiandentalmesquite.com/services/emergency-dentistry.html",
             "name": "Emergency Dentist in Mesquite, TX | Same-Day Dental Care",
             "description": "Facing a dental emergency in Mesquite, TX? Meridian Dental provides same-day emergency dental care for severe toothaches, broken teeth, and lost crowns.",
-            "about": [
-              {
-                "@type": "EmergencyService",
-                "name": "Emergency Dental Care",
-                "provider": {
-                  "@type": "Dentist",
-                  "name": "Meridian Dental",
-                  "telephone": "+1-972-559-9293",
-                  "address": {
-                    "@type": "PostalAddress",
-                    "streetAddress": "456 Medical Circle, Suite B",
-                    "addressLocality": "Mesquite",
-                    "addressRegion": "TX",
-                    "postalCode": "75150",
-                    "addressCountry": "US"
-                  }
-                }
-              }
-            ]
+            "about": {
+              "@type": "MedicalProcedure",
+              "name": "Emergency Dental Care",
+              "procedureType": "https://schema.org/EmergencyProcedure"
+            },
+            "author": {
+              "@id": "https://meridiandentalmesquite.com/#dentist"
+            }
+          },
+          {
+            "@type": "Dentist",
+            "@id": "https://meridiandentalmesquite.com/#dentist",
+            "name": "Meridian Dental",
+            "url": "https://meridiandentalmesquite.com/",
+            "telephone": "+1-972-559-9293",
+            "priceRange": "$$",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "456 Medical Circle, Suite B",
+              "addressLocality": "Mesquite",
+              "addressRegion": "TX",
+              "postalCode": "75150",
+              "addressCountry": "US"
+            }
           },
           {
             "@type": "FAQPage",
