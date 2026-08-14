@@ -65,43 +65,43 @@
       content="https://meridiandentalmesquite.com/images/og-preview.jpg"
     />
 
-    <!-- Preload the critical above-the-fold assets immediately -->
+    <!-- 1. Preload Hero Image & Font with high priority -->
     <link
       rel="preload"
-      href="images/dental-office-mesquite.avif"
+      href="/images/dental-office-mesquite.avif"
       as="image"
       type="image/avif"
       fetchpriority="high"
     />
     <link
       rel="preload"
-      href="fonts/cinzel-600-semibold.woff2"
+      href="/fonts/cinzel-600-semibold.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
-    <!-- ⚡ CORRECTED CRITICAL CSS BLOCK -->
+
+    <!-- 2. Optimized Critical CSS Block -->
     <style>
       @font-face {
         font-family: "Cinzel";
         font-style: normal;
         font-weight: 600;
-        font-display: block;
-        src: url("fonts/cinzel-600-semibold.woff2") format("woff2");
+        font-display: swap; /* ⚡ FIX: Prevents invisible text rendering delays on mobile */
+        src: url("/fonts/cinzel-600-semibold.woff2") format("woff2");
       }
 
       :root {
         --primary-teal: #0e7490;
         --dark-slate: #0f172a;
-        --light-gray: #f8f9fa; /* ⚡ FIX: Added back to ensure hero text renders correctly */
+        --light-gray: #f8f9fa;
         --text-color: #334155;
       }
 
-      /* Global Layout Resets */
       *,
       *::before,
       *::after {
-        box-sizing: border-box; /* ⚡ FIX: Prevents padding from forcing horizontal scroll */
+        box-sizing: border-box;
       }
 
       html {
@@ -124,18 +124,15 @@
         min-height: 100vh;
       }
 
-      /* ⚡ GLOBAL STRUCTURAL FIX FOR MAIN CONTAINER CLS */
       main {
         display: block;
         width: 100%;
         position: relative;
-        /* Reserves layout block space instantly while internal content loads */
         min-height: 100vh;
         contain: layout;
         flex: 1 0 auto;
       }
 
-      /* Sticky Header Frame */
       header {
         position: sticky;
         top: 0;
@@ -149,12 +146,6 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
       }
 
-      main,
-      section,
-      footer {
-        overflow-x: hidden;
-      }
-
       .logo-container a {
         font-family: "Cinzel", serif;
         font-size: 1.4rem;
@@ -164,48 +155,42 @@
         letter-spacing: 2px;
       }
 
-      /* Above-The-Fold Hero Component Layout */
       #hero {
         display: flex;
         align-items: center;
-        height: 80vh;
+        min-height: 70vh;
         box-sizing: border-box;
         padding: 60px 10%;
         background:
           linear-gradient(
             to right,
-            rgba(20, 30, 40, 0.85) 30%,
-            rgba(20, 30, 40, 0.2) 100%
+            rgba(20, 30, 40, 0.9) 30%,
+            rgba(20, 30, 40, 0.3) 100%
           ),
-          url("images/dental-office-mesquite.avif") no-repeat center center;
+          url("/images/dental-office-mesquite.avif") no-repeat center center;
         background-size: cover;
-        /* ⚡ CLS & LCP ACCELERATION FIXES */
-        content-visibility: auto; /* Tells the browser to isolate layout calculations */
-        contain-intrinsic-size: 80vh; /* Reserves rendering space before the background paints */
-        contain: layout size;
+        /* ⚡ LCP ACCELERATION FIX */
+        content-visibility: auto;
+        contain-intrinsic-size: 70vh;
+        contain: layout;
       }
 
-      .hero-overlay-content {
-        max-width: 550px;
-        min-height: 380px; /* ⚡ FIX: Reserves vertical space specifically for the text box */
+      .hero-content {
+        max-width: 600px;
         z-index: 2;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
       }
 
       #hero-heading {
-        font-family:
-          "Cinzel", serif; /* ⚡ Ensures the heading expects the font size immediately */
-        font-size: 2.8rem;
+        font-family: "Cinzel", serif;
+        font-size: 2.5rem;
         color: #ffffff;
         margin-bottom: 20px;
         line-height: 1.2;
       }
 
       #hero p {
-        font-size: 1.2rem;
-        color: #e2e8f0; /* ⚡ FIX: Forces high-contrast soft white text color */
+        font-size: 1.15rem;
+        color: #e2e8f0;
         margin-bottom: 30px;
         line-height: 1.6;
       }
@@ -218,6 +203,19 @@
         border-radius: 4px;
         text-decoration: none;
         font-weight: bold;
+      }
+
+      .emergency-badge {
+        display: inline-block;
+        background: #be123c;
+        color: #ffffff;
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
       }
     </style>
 

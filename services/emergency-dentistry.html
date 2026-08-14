@@ -94,15 +94,7 @@
       }
     </script>
 
-    <!-- Preload Fonts & Above-The-Fold Assets -->
-    <link
-      rel="preload"
-      href="/fonts/cinzel-600-semibold.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <!-- Forces browser parser to fetch the LCP hero image with top priority immediately -->
+    <!-- 1. Preload Hero Image & Font with high priority -->
     <link
       rel="preload"
       href="/images/dental-office-mesquite.avif"
@@ -110,13 +102,21 @@
       type="image/avif"
       fetchpriority="high"
     />
-    <!-- Critical CSS Block directly matching index.html setup -->
+    <link
+      rel="preload"
+      href="/fonts/cinzel-600-semibold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- 2. Optimized Critical CSS Block -->
     <style>
       @font-face {
         font-family: "Cinzel";
         font-style: normal;
         font-weight: 600;
-        font-display: block;
+        font-display: swap; /* ⚡ FIX: Prevents invisible text rendering delays on mobile */
         src: url("/fonts/cinzel-600-semibold.woff2") format("woff2");
       }
 
@@ -187,7 +187,7 @@
       #hero {
         display: flex;
         align-items: center;
-        height: 70vh;
+        min-height: 70vh;
         box-sizing: border-box;
         padding: 60px 10%;
         background:
@@ -198,10 +198,15 @@
           ),
           url("/images/dental-office-mesquite.avif") no-repeat center center;
         background-size: cover;
+        /* ⚡ LCP ACCELERATION FIX */
+        content-visibility: auto;
+        contain-intrinsic-size: 70vh;
+        contain: layout;
       }
 
       .hero-content {
         max-width: 600px;
+        z-index: 2;
       }
 
       #hero-heading {
