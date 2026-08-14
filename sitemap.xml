@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!-- Home Page -->
+  <!-- Homepage Hub -->
   <url>
     <loc>https://meridiandentalmesquite.com/</loc>
     <lastmod>2026-08-14</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Emergency Dentistry Service -->
+
+  <!-- Spoke 1: Emergency Care -->
   <url>
     <loc>https://meridiandentalmesquite.com/services/emergency-dentistry.html</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- Cosmetic Dentistry Service -->
-<url>
-  <loc>https://meridiandentalmesquite.com/services/cosmetic-dentistry.html</loc>
-  <lastmod>2026-08-14</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
-<!-- Dental Implants Service -->
-<url>
-  <loc>https://meridiandentalmesquite.com/services/dental-implants.html</loc>
-  <lastmod>2026-08-14</lastmod>
-  <changefreq>monthly</changefreq>
-  <priority>0.8</priority>
-</url>
+
+  <!-- Spoke 2: Cosmetic Care -->
+  <url>
+    <loc>https://meridiandentalmesquite.com/services/cosmetic-dentistry.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Spoke 3: Dental Implants -->
+  <url>
+    <loc>https://meridiandentalmesquite.com/services/dental-implants.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Spoke 4: Family Dentistry -->
+  <url>
+    <loc>https://meridiandentalmesquite.com/services/family-dentistry.html</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
