@@ -87,7 +87,7 @@
         font-family: "Cinzel";
         font-style: normal;
         font-weight: 600;
-        font-display: swap; /* ⚡ FIX: Prevents invisible text rendering delays on mobile */
+        font-display: optional; /* ⚡ FIX: Prevents invisible text rendering delays on mobile */
         src: url("/fonts/cinzel-600-semibold.woff2") format("woff2");
       }
 
@@ -137,6 +137,7 @@
         position: sticky;
         top: 0;
         width: 100%;
+        min-height: 70px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -442,6 +443,12 @@
                   height="250"
                   loading="lazy"
                   decoding="async"
+                  style="
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 16/10;
+                    object-fit: cover;
+                  "
                 />
               </picture>
             </div>
