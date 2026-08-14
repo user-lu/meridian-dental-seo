@@ -102,7 +102,14 @@
       type="font/woff2"
       crossorigin
     />
-
+    <!-- Forces browser parser to fetch the LCP hero image with top priority immediately -->
+    <link
+      rel="preload"
+      href="/images/dental-office-mesquite.avif"
+      as="image"
+      type="image/avif"
+      fetchpriority="high"
+    />
     <!-- Critical CSS Block directly matching index.html setup -->
     <style>
       @font-face {
@@ -318,6 +325,12 @@
                   height="250"
                   loading="lazy"
                   decoding="async"
+                  style="
+                    width: 100%;
+                    height: auto;
+                    aspect-ratio: 16/10;
+                    object-fit: cover;
+                  "
                 />
               </picture>
             </div>
