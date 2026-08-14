@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- Home Page -->
   <url>
     <loc>https://meridiandentalmesquite.com/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
+  <!-- Emergency Dentistry Service -->
   <url>
     <loc>https://meridiandentalmesquite.com/services/emergency-dentistry.html</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Cosmetic Dentistry Service -->
+<url>
+  <loc>https://meridiandentalmesquite.com/services/cosmetic-dentistry.html</loc>
+  <lastmod>2026-08-14</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.8</priority>
+</url>
 </urlset>
